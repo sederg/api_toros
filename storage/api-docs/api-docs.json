@@ -1,0 +1,441 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Toros y Vacas",
+        "description": "Toros y vacas es un juego de lógica y estrategia",
+        "version": "0.9 beta"
+    },
+    "servers": [
+        {
+            "url": "http://localhost/api_laravel/public/"
+        }
+    ],
+    "paths": {
+        "/game/newgame": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Crear un nuevo Juego",
+                "operationId": "7fa75fe8f72fac750469e90eb631f0dd",
+                "parameters": [
+                    {
+                        "name": "usuario",
+                        "in": "query",
+                        "description": "Nombre del usuario del juego",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "Raul"
+                    },
+                    {
+                        "name": "edad",
+                        "in": "query",
+                        "description": "edad del usuario del juego",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "15"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Juego creado correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id_juego": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "inicio_juego": {
+                                                        "type": "string",
+                                                        "example": "2023-11-28T15:46:17.467752Z"
+                                                    },
+                                                    "tiempo_juego": {
+                                                        "type": "number",
+                                                        "example": "800"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Juego creado satisfactoriamente.Su id de juego es :8), El contador de juego comienza en 2023-11-28 15:46:17 y tiene un tiempo de 800 antes de perder la partida."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Error de Valiacion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "Error de validacion"
+                                                    },
+                                                    "error": {
+                                                        "type": "string",
+                                                        "example": "El campo X de ser..."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/combinacion": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Proponer una combinacion de numeros para ser evaluada",
+                "operationId": "3a08be818718a0688fdc81c43a225ba6",
+                "parameters": [
+                    {
+                        "name": "combinacion_actual",
+                        "in": "query",
+                        "description": "Combinacion de 4 digitos numericos",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "2445"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Combinacion evaluada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id_juego": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "inicio_juego": {
+                                                        "type": "string",
+                                                        "example": "2023-11-28T15:46:17.467752Z"
+                                                    },
+                                                    "tiempo_juego": {
+                                                        "type": "number",
+                                                        "example": "800"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Juego creado satisfactoriamente.Su id de juego es :8), El contador de juego comienza en 2023-11-28 15:46:17 y tiene un tiempo de 800 antes de perder la partida."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "428": {
+                        "description": "Error de Valiacion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "Error de validacion"
+                                                    },
+                                                    "error": {
+                                                        "type": "string",
+                                                        "example": "El campo X de ser..."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/eliminar_juego": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Eliminar datos del juego",
+                "operationId": "a8312fc97be1188e1b677d90ac0672dd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Identificador del juego a eliminar",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "3"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Juego eliminaddo correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Los datos del juego se han eliminado correctamente."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "El Juego no existe",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "mensaje": {
+                                                        "type": "El juego x no existe"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/previo": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Ver juda previa a un intento X",
+                "operationId": "29c269086dc4cf0fe138ca65b2c62af0",
+                "parameters": [
+                    {
+                        "name": "intento",
+                        "in": "query",
+                        "description": "Intento que desea mostrar",
+                        "required": true,
+                        "schema": {
+                            "type": "number"
+                        },
+                        "example": "5"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "la Combinacion evaluada correctamente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id_juego": {
+                                                        "type": "number",
+                                                        "example": "1"
+                                                    },
+                                                    "inicio_juego": {
+                                                        "type": "string",
+                                                        "example": "2023-11-28T15:46:17.467752Z"
+                                                    },
+                                                    "tiempo_juego": {
+                                                        "type": "number",
+                                                        "example": "800"
+                                                    },
+                                                    "message": {
+                                                        "type": "string",
+                                                        "example": "Juego creado satisfactoriamente.Su id de juego es :8), El contador de juego comienza en 2023-11-28 15:46:17 y tiene un tiempo de 800 antes de perder la partida."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "428": {
+                        "description": "Error de Valiacion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "rows": {
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "status": {
+                                                        "type": "string",
+                                                        "example": "Error de validacion"
+                                                    },
+                                                    "error": {
+                                                        "type": "string",
+                                                        "example": "El campo X de ser..."
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "responses": {
+            "404": {
+                "description": "El Juego no existe",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "rows": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "status": {
+                                                "type": "string"
+                                            },
+                                            "mensaje": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "200": {
+                "description": "Tiempo de juego agotado",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "rows": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "status": {
+                                                "type": "string"
+                                            },
+                                            "mensaje": {
+                                                "type": "string"
+                                            },
+                                            "combinacion_real": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            },
+            "401": {
+                "description": "La combinacion no existe",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "properties": {
+                                "rows": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "status": {
+                                                "type": "string"
+                                            },
+                                            "mensaje": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
